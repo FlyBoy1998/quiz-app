@@ -60,6 +60,7 @@ h1 {
 .question {
     font-size: 1.5rem;
     margin-top: 24px;
+    letter-spacing: 1.5px;
 }
 
 .timer-score-container {
@@ -67,6 +68,10 @@ h1 {
     justify-content: space-between;
     font-size: 2.5rem;
     margin-top: auto;
+}
+
+.timer {
+    color: rgb(0, 188, 0);
 }
 
 .options-container {
@@ -88,4 +93,50 @@ h1 {
 
 .answer:hover {
     background-color: rgb(0, 136, 136);
+}
+
+@media screen and (max-width: 800px) {
+    .app {
+        margin: 0 2rem;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .timer-score-container {
+        font-size: 2rem;
+        margin-top: 16px;
+    }
+
+    .questions-container,
+    .options-container {
+        width: 100%;
+    }
+
+    .options-container {
+        gap: 15px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .answer {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .question-index {
+        font-size: 2.5rem;
+    }
+
+    .question {
+        font-size: 1.25rem;
+    }
+
+    .app {
+        margin: 0 1rem;
+    }
+
+    .options-container {
+        display: flex;
+    }
 }
