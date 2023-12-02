@@ -44,6 +44,7 @@ h1 {
     background: linear-gradient(to left, #000428, #004e92);
 
     /* Visibility hidden while styling */
+    display: none;
 }
 
 .questions-container {
@@ -138,9 +139,16 @@ h1 {
     background-color: rgb(128, 128, 128);
 }
 
+/* MAIN MENU */
+.main-menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* RULES AND START BUTTONS */
 .start-buttons-container {
-    display: none;
+    display: block;
 }
 
 @media screen and (max-width: 1200px) {
