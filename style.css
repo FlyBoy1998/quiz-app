@@ -44,7 +44,11 @@ h1 {
     background: linear-gradient(to left, #000428, #004e92);
 
     /* Visibility hidden while styling */
-    display: none;
+}
+
+/* Add important so that the display flex from large screen size doesn't overwrite it */
+.hidden {
+    display: none !important;
 }
 
 .questions-container {
@@ -146,6 +150,7 @@ h1 {
     justify-content: center;
     align-items: center;
     row-gap: 20px;
+    display: none;
 }
 
 .main-menu-title {
