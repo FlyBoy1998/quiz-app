@@ -144,11 +144,20 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+}
+
+.main-menu-title {
+    font-size: 36px;
+    letter-spacing: 1.5px;
+    text-align: center;
 }
 
 /* RULES AND START BUTTONS */
 .start-buttons-container {
-    display: block;
+    display: flex;
+    gap: 20px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -195,5 +204,9 @@ h1 {
 
     .options-container {
         display: flex;
+    }
+
+    .main-menu-container {
+        margin: 0 2rem;
     }
 }
