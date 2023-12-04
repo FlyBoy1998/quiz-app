@@ -215,6 +215,9 @@ h1 {
 
 .difficulty-level-buttons {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 12px;
 }
 
@@ -292,6 +295,11 @@ h1 {
 @media screen and (max-width: 576px) {
     .app {
         margin-bottom: 1.75rem;
+    }
+
+    .app-container {
+        width: 95%;
+        margin: 0 auto;
     }
 
     .question-index {
