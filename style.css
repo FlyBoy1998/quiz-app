@@ -233,6 +233,33 @@ h1 {
     transition: background-color 0.3s ease-out;
 }
 
+.difficulty-level-btn[value="easy"] {
+    border-color: rgb(0, 128, 0);
+    background-color: rgba(0, 128, 0, 0.3);
+}
+
+.difficulty-level-btn[value="medium"] {
+    border-color: rgb(255, 174, 0);
+    background-color: rgba(255, 174, 0, 0.3);
+}
+
+.difficulty-level-btn[value="hard"] {
+    border-color: rgb(220, 20, 60);
+    background-color: rgba(220, 20, 60, 0.3);
+}
+
+.difficulty-level-btn[value="easy"]:hover{
+    background-color: rgb(0, 128, 0);
+}
+
+.difficulty-level-btn[value="medium"]:hover {
+    background-color: rgb(255, 174, 0);
+}
+
+.difficulty-level-btn[value="hard"]:hover {
+    background-color: rgb(220, 20, 60);
+}
+
 @media screen and (max-width: 1200px) {
     .app {
         width: 85%;
