@@ -161,11 +161,15 @@ h1 {
 /* RULES AND START BUTTONS */
 .start-buttons-container {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
 }
 
 .start-btn,
-.rules-btn {
+.rules-btn,
+.scores-btn {
     width: 120px;
     height: 60px;
     text-transform: uppercase;
@@ -190,11 +194,20 @@ h1 {
     background-color: rgba(0, 136, 136, 0.175);
 }
 
+.scores-btn {
+    border-color: rgb(0, 136, 136);
+    background-color: rgba(0, 136, 136, 0.175);
+}
+
 .start-btn:hover {
     background-color: rgb(205, 133, 0);
 }
 
 .rules-btn:hover {
+    background-color: rgb(0, 136, 136);
+}
+
+.scores-btn:hover {
     background-color: rgb(0, 136, 136);
 }
 
