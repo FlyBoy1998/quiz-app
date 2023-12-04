@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -38,7 +39,7 @@
                     <button class="reset-btn">Reset</button>
                 </div>
             </div>
-            <div class="main-menu-container">
+            <div class="main-menu-container hidden">
                 <h2 class="main-menu-title">Let's test your knowledge!</h2>
                 <!-- Rules, Scores and Start Buttons -->
                 <div class="start-buttons-container">
@@ -56,6 +57,23 @@
                     <button class="difficulty-level-btn" value="hard">Hard</button>
                 </div>
             </div>
+        </div>
+
+        <!-- Rules Modal -->
+        <div class="rules-modal">
+            <h3>Rules</h3>
+            <p>Ok, so the rules are pretty simple! After you press the start button, you have to select one of the
+                difficulty levels(easy, medium, or hard). Depending on the difficulty level selected, the conditions are
+                as follows:
+            </p>
+            <ol>
+                <li><span>Easy level</span> - 10 questions with 25 seconds to answer each question. For each correct answer you'll receive 100 points! For each wrong answer you'll lose 50 points!</li>
+                <li><span>Medium level</span> - 15 questions with 20 seconds to answer each question. For each correct answer you'll receive 100 points! For each wrong answer you'll lose 75 points!</li>
+                <li><span>Hard level</span> - 20 questions with 15 seconds to answer each question. For each correct answer you'll receive 100 points! For each wrong answer you'll lose 100 points!</li>
+            </ol>
+            <p>After you finish answering all the questions, a new window will pop-up showing your score and your top 3 best scores!</p>
+            <p>Good luck and have fun!</p>
+            <button class="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
         </div>
     </div>
     <script src="./js/script.js"></script>
