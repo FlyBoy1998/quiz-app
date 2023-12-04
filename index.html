@@ -16,7 +16,7 @@
         <h1>Quiz App</h1>
         <!-- Application -->
         <div class="app-container">
-            <div class="app">
+            <div class="app hidden">
                 <div class="questions-container">
                     <div>
                         <p class="question-index">Question <span class="index">1</span>/10</p>
@@ -38,16 +38,24 @@
                     <button class="reset-btn">Reset</button>
                 </div>
             </div>
-            <div class="main-menu-container">
+            <div class="main-menu-container hidden">
                 <h2 class="main-menu-title">Let's test your knowledge!</h2>
-                <!-- Rules and Start Buttons -->
+                <!-- Rules, Scores and Start Buttons -->
                 <div class="start-buttons-container">
                     <button class="start-btn">Start</button>
                     <button class="rules-btn">Rules</button>
                 </div>
             </div>
+            <!-- Select Difficulty Level -->
+            <div class="difficulty-level-container">
+                <h2 class="difficulty-level-title">Select Difficulty Level!</h2>
+                <div class="difficulty-level-buttons">
+                    <button class="difficulty-level-btn">Easy</button>
+                    <button class="difficulty-level-btn">Medium</button>
+                    <button class="difficulty-level-btn">Hard</button>
+                </div>
+            </div>
         </div>
-        <!-- @todo Select Difficulty Level -->
     </div>
     <script src="./js/script.js"></script>
 </body>
