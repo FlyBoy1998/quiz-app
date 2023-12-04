@@ -333,6 +333,51 @@ h1 {
     background-color: #5f9ea0c1;
 }
 
+.scores-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 50%;
+    min-height: 300px;
+    left: 50%;
+    top: 10%;
+    padding: 1.5rem 3rem;
+    border-radius: 24px;
+    letter-spacing: 1.3px;
+    transform: translateX(-50%);
+    z-index: 10;
+    color: #d3d3d3;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 10px 6px rgba(40, 40, 40, 0.55);
+    background-color: rgba(0, 4, 40, 0.4);
+    transition: all 0.4s linear;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.scores-modal-visible {
+    top: 25%;
+    visibility: visible;
+    opacity: 1;
+}
+
+.scores-modal h3 {
+    font-size: 32px;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #f0f8ff;
+}
+
+.scores-modal ol {
+    font-size: 24px;
+}
+
+.scores-modal li {
+    margin-bottom: 0.75rem;
+}
+
 @media screen and (max-width: 1200px) {
     .app {
         width: 85%;
@@ -340,6 +385,10 @@ h1 {
 
     .rules-modal {
         width: 85%;
+    }
+
+    .scores-modal {
+        width: 75%;
     }
 }
 
@@ -372,6 +421,10 @@ h1 {
     .rules-modal p,
     .rules-modal ol {
         font-size: 16px;
+    }
+
+    .scores-modal {
+        width: 80%;
     }
 }
 
@@ -410,5 +463,9 @@ h1 {
         width: 95%;
         padding: 1rem 1.5rem;
         top: 10%;
+    }
+
+    .scores-modal{
+        width: 90%;
     }
 }
