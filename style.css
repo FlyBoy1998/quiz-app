@@ -15,6 +15,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     min-height: 100vh;
+    position: relative;
     width: 100%;
 }
 
@@ -276,8 +277,59 @@ h1 {
     background-color: rgb(220, 20, 60);
 }
 
+/* RULES MODAL */
+.rules-modal {
+    width: 70%;
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    padding: 1.5rem 3rem;
+    border-radius: 24px;
+    letter-spacing: 1.3px;
+    transform: translateX(-50%);
+    z-index: 0;
+    color: #d3d3d3;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 10px 6px rgba(40, 40, 40, 0.55);
+    background-color: rgba(0, 4, 40, 0.4);
+}
+
+.rules-modal h3 {
+    font-size: 32px;
+    margin-bottom: 1rem;
+    color: #f0f8ff;
+}
+
+.rules-modal p,
+.rules-modal ol {
+    font-size: 20px;
+}
+
+.close-modal-btn {
+    width: 32px;
+    height: 32px;
+    color: white;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    background-color: #5f9ea0;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out;
+}
+
+.close-modal-btn:hover {
+    background-color: #5f9ea0c1;
+}
+
 @media screen and (max-width: 1200px) {
     .app {
+        width: 85%;
+    }
+
+    .rules-modal {
         width: 85%;
     }
 }
@@ -302,6 +354,10 @@ h1 {
 
     .answer {
         text-align: center;
+    }
+
+    .rules-modal {
+        width: 90%;
     }
 }
 
@@ -329,5 +385,10 @@ h1 {
 
     .main-menu-container {
         margin: 0 2rem;
+    }
+
+    .rules-modal {
+        width: 95%;
+        padding: 1rem 1.5rem;
     }
 }
