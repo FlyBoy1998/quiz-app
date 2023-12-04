@@ -1,6 +1,6 @@
 const rulesModal = document.querySelector('.rules-modal');
 const rulesBtn = document.querySelector('.rules-btn');
-const closeModalBtn = document.querySelector('.close-modal-btn');
+const closeRulesBtn = document.getElementById('close-rules-btn');
 
 function showRulesModal () {
     rulesModal.classList.add('rules-modal-visible');
@@ -11,4 +11,4 @@ function hideRulesModal() {
 }
 
 rulesBtn.addEventListener('click', showRulesModal);
-closeModalBtn.addEventListener('click', hideRulesModal);
+closeRulesBtn.addEventListener('click', hideRulesModal);
