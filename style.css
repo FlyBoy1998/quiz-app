@@ -314,6 +314,10 @@ h1 {
     font-size: 20px;
 }
 
+.rules-modal ol {
+    list-style-position: inside;
+}
+
 .close-modal-btn {
     width: 32px;
     height: 32px;
