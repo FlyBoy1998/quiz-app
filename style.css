@@ -282,16 +282,25 @@ h1 {
     width: 70%;
     position: absolute;
     left: 50%;
-    top: 15%;
+    top: 10%;
     padding: 1.5rem 3rem;
     border-radius: 24px;
     letter-spacing: 1.3px;
     transform: translateX(-50%);
-    z-index: 0;
+    z-index: 10;
     color: #d3d3d3;
     backdrop-filter: blur(15px);
     box-shadow: 0 0 10px 6px rgba(40, 40, 40, 0.55);
     background-color: rgba(0, 4, 40, 0.4);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.4s linear;
+}
+
+.rules-modal-visible {
+    visibility: visible;
+    top: 15%;
+    opacity: 1;
 }
 
 .rules-modal h3 {
@@ -359,9 +368,19 @@ h1 {
     .rules-modal {
         width: 90%;
     }
+
+    .rules-modal p,
+    .rules-modal ol {
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 576px) {
+    h1 {
+        font-size: 40px;
+        padding: 12px 0;
+    }
+
     .app {
         margin-bottom: 1.75rem;
     }
@@ -390,5 +409,6 @@ h1 {
     .rules-modal {
         width: 95%;
         padding: 1rem 1.5rem;
+        top: 10%;
     }
 }
