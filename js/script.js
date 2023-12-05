@@ -78,11 +78,12 @@ function displayQuestion() {
 function countdown () {
     if(timer < 0) {
         nextQuestion();
-        timerEl.style.color = 'rgb(0, 188, 0)';
     }
     
     if(timer <= 10) {
         timerEl.style.color = 'crimson';
+    } else {
+        timerEl.style.color = 'rgb(0, 188, 0)';
     }
     timerEl.textContent = ' ' + timer;
     timer--;
