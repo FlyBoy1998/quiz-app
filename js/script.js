@@ -17,9 +17,11 @@ const questionNumber = document.querySelector('.question-number');
 const questionsTotal = document.querySelector('.total-questions');
 const scoreEl = document.querySelector('.score');
 const timerEl = document.querySelector('.timer');
+const nextBtn = document.querySelector('.next-question-btn');
 
 let score = 0;
 let timer;
+let questionIndex = 1;
 
 function showRulesModal() {
     rulesModal.classList.add('rules-modal-visible');
@@ -71,7 +73,12 @@ function displayQuestion() {
     `
 }
 
-const countdown = () => {
+function countdown () {
+    if(timer < 0) {
+        nextQuestion();
+        timerEl.style.color = 'rgb(0, 188, 0)';
+    }
+    
     if(timer <= 10) {
         timerEl.style.color = 'crimson';
     }
@@ -82,23 +89,43 @@ const countdown = () => {
 
 difficultyLevelBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
+        nextBtn.setAttribute('value', btn.value);
         if(btn.value === 'easy') {
             timer = 25;
-            setInterval(countdown, 1000);
+            questionsTotal.textContent = 15;
         } else if(btn.value === 'medium') {
             timer = 20;
-            setInterval(countdown, 1000);
+            questionsTotal.textContent = 20;
         } else {
             timer = 15;
-            setInterval(countdown, 1000);
+            questionsTotal.textContent = 25;
         }
+        setInterval(countdown, 1000);
         startPlay();
         displayQuestion();
     });
 })
+
+function nextQuestion() {
+    questionIndex++;
+    if(nextBtn.getAttribute('value') === 'easy') {
+        timer = 25;
+      } else if(nextBtn.getAttribute('value') === 'medium') {
+        timer = 20;
+      } else if(nextBtn.getAttribute('value') === 'hard') {
+        timer = 15;
+      }
+    if(questionIndex > +questionsTotal.textContent) {
+        questionIndex = 0;
+    }
+    console.log(questionIndex);
+      questionNumber.innerHTML = questionIndex;
+      displayQuestion();
+};
 
 rulesBtn.addEventListener('click', showRulesModal);
 closeRulesBtn.addEventListener('click', hideRulesModal);
 scoresBtn.addEventListener('click', showScoresModal);
 closeScoresBtn.addEventListener('click', hideScoresModal);
 startBtn.addEventListener('click', start);
+nextBtn.addEventListener('click', nextQuestion);
