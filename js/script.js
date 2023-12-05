@@ -10,6 +10,7 @@ const startBtn = document.querySelector('.start-btn');
 const mainMenuContainer = document.querySelector('.main-menu-container');
 const difficultyLevelContainer = document.querySelector('.difficulty-level-container');
 const difficultyLevelBtns = document.querySelectorAll('.difficulty-level-btn');
+const application = document.querySelector('.app');
 
 function showRulesModal() {
     rulesModal.classList.add('rules-modal-visible');
@@ -31,6 +32,15 @@ function start() {
     mainMenuContainer.classList.add('hidden');
     difficultyLevelContainer.classList.remove('hidden');
 }
+
+function startPlay() {
+    difficultyLevelContainer.classList.add('hidden');
+    application.classList.remove('hidden');
+}
+
+difficultyLevelBtns.forEach((btn) => {
+    btn.addEventListener('click', startPlay);
+})
 
 rulesBtn.addEventListener('click', showRulesModal);
 closeRulesBtn.addEventListener('click', hideRulesModal);
