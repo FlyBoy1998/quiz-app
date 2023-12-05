@@ -18,10 +18,12 @@ const questionsTotal = document.querySelector('.total-questions');
 const scoreEl = document.querySelector('.score');
 const timerEl = document.querySelector('.timer');
 const nextBtn = document.querySelector('.next-question-btn');
+const resetBtn = document.querySelector('.reset-btn');
 
 let score = 0;
 let timer;
 let questionIndex = 1;
+let interval;
 
 function showRulesModal() {
     rulesModal.classList.add('rules-modal-visible');
@@ -100,7 +102,7 @@ difficultyLevelBtns.forEach((btn) => {
             timer = 15;
             questionsTotal.textContent = 25;
         }
-        setInterval(countdown, 1000);
+        interval = setInterval(countdown, 1000);
         startPlay();
         displayQuestion();
     });
@@ -123,9 +125,22 @@ function nextQuestion() {
       displayQuestion();
 };
 
+function stopCountdown() {
+    clearInterval(interval);
+}
+
+function reset() {
+    questionIndex = 1;
+    timerEl.textContent = ' ';
+    mainMenuContainer.classList.remove('hidden');
+    application.classList.add('hidden');
+    stopCountdown();
+}
+
 rulesBtn.addEventListener('click', showRulesModal);
 closeRulesBtn.addEventListener('click', hideRulesModal);
 scoresBtn.addEventListener('click', showScoresModal);
 closeScoresBtn.addEventListener('click', hideScoresModal);
 startBtn.addEventListener('click', start);
 nextBtn.addEventListener('click', nextQuestion);
+resetBtn.addEventListener('click', reset);
