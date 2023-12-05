@@ -11,6 +11,15 @@ const mainMenuContainer = document.querySelector('.main-menu-container');
 const difficultyLevelContainer = document.querySelector('.difficulty-level-container');
 const difficultyLevelBtns = document.querySelectorAll('.difficulty-level-btn');
 const application = document.querySelector('.app');
+const optionsContainer = document.querySelector('.options-container');
+const questionText = document.querySelector('.question');
+const questionNumber = document.querySelector('.question-number');
+const questionsTotal = document.querySelector('.total-questions');
+const scoreEl = document.querySelector('.score');
+const timerEl = document.querySelector('.timer');
+
+let score = 0;
+let timer;
 
 function showRulesModal() {
     rulesModal.classList.add('rules-modal-visible');
@@ -38,8 +47,35 @@ function startPlay() {
     application.classList.remove('hidden');
 }
 
+function randomNoRepeats(array) {
+    let copy = array.slice(0);
+    return function() {
+      if (copy.length < 1) { copy = array.slice(0); }
+      let index = Math.floor(Math.random() * copy.length);
+      let item = copy[index];
+      copy.splice(index, 1);
+      return item;
+    };
+}
+
+function displayQuestion() {
+    let chooser = randomNoRepeats(questions);
+    let questionObj = chooser();
+    const { question, answers: [{text_1} , {text_2}, {text_3}, {text_4}]} = questionObj;
+    questionText.textContent = question;
+    optionsContainer.innerHTML = `
+                    <p class="answer">${text_1}</p>
+                    <p class="answer">${text_2}</p>
+                    <p class="answer">${text_3}</p>
+                    <p class="answer">${text_4}</p>
+    `
+}
+
 difficultyLevelBtns.forEach((btn) => {
-    btn.addEventListener('click', startPlay);
+    btn.addEventListener('click', () => {
+        startPlay();
+        displayQuestion();
+    });
 })
 
 rulesBtn.addEventListener('click', showRulesModal);
