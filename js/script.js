@@ -113,17 +113,18 @@ function nextQuestion() {
     questionIndex++;
     if(nextBtn.getAttribute('value') === 'easy') {
         timer = 25;
-      } else if(nextBtn.getAttribute('value') === 'medium') {
+    } else if(nextBtn.getAttribute('value') === 'medium') {
         timer = 20;
-      } else if(nextBtn.getAttribute('value') === 'hard') {
+    } else if(nextBtn.getAttribute('value') === 'hard') {
         timer = 15;
-      }
+    }
+    
     if(questionIndex > +questionsTotal.textContent) {
         questionIndex = 0;
     }
     console.log(questionIndex);
-      questionNumber.textContent = questionIndex;
-      displayQuestion();
+    questionNumber.textContent = questionIndex;
+    displayQuestion();
 };
 
 function stopCountdown() {
