@@ -71,8 +71,27 @@ function displayQuestion() {
     `
 }
 
+const countdown = () => {
+    if(timer <= 10) {
+        timerEl.style.color = 'crimson';
+    }
+    timerEl.textContent = ' ' + timer;
+    timer--;
+    return timer;
+}
+
 difficultyLevelBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
+        if(btn.value === 'easy') {
+            timer = 25;
+            setInterval(countdown, 1000);
+        } else if(btn.value === 'medium') {
+            timer = 20;
+            setInterval(countdown, 1000);
+        } else {
+            timer = 15;
+            setInterval(countdown, 1000);
+        }
         startPlay();
         displayQuestion();
     });
