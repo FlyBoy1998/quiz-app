@@ -103,9 +103,9 @@ difficultyLevelBtns.forEach((btn) => {
             timer = 15;
             questionsTotal.textContent = 25;
         }
-        interval = setInterval(countdown, 1000);
         startPlay();
         displayQuestion();
+        interval = setInterval(countdown, 1000);
     });
 })
 
