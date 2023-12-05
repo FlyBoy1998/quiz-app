@@ -118,11 +118,10 @@ function nextQuestion() {
     } else if(nextBtn.getAttribute('value') === 'hard') {
         timer = 15;
     }
-    
+
     if(questionIndex > +questionsTotal.textContent) {
         questionIndex = 0;
     }
-    console.log(questionIndex);
     questionNumber.textContent = questionIndex;
     displayQuestion();
 };
