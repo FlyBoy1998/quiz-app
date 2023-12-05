@@ -121,7 +121,7 @@ function nextQuestion() {
         questionIndex = 0;
     }
     console.log(questionIndex);
-      questionNumber.innerHTML = questionIndex;
+      questionNumber.textContent = questionIndex;
       displayQuestion();
 };
 
@@ -131,6 +131,7 @@ function stopCountdown() {
 
 function reset() {
     questionIndex = 1;
+    questionNumber.textContent = questionIndex;
     timerEl.textContent = ' ';
     mainMenuContainer.classList.remove('hidden');
     application.classList.add('hidden');
