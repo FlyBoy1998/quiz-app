@@ -1,3 +1,5 @@
+import questions from "./questions.js";
+
 const rulesModal = document.querySelector('.rules-modal');
 const rulesBtn = document.querySelector('.rules-btn');
 const closeRulesBtn = document.getElementById('close-rules-btn');
