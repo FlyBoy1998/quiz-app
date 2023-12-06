@@ -197,6 +197,7 @@ function reset() {
     scoreEl.textContent = score;
     mainMenuContainer.classList.remove('hidden');
     application.classList.add('hidden');
+    optionsContainer.classList.remove('answers-disabled');
     stopCountdown();
 }
 
