@@ -49,6 +49,7 @@ function start() {
 function startPlay() {
     difficultyLevelContainer.classList.add('hidden');
     application.classList.remove('hidden');
+    scoreEl.textContent = score;
 }
 
 function randomNoRepeats(array) {
@@ -65,21 +66,73 @@ function randomNoRepeats(array) {
 function displayQuestion() {
     let chooser = randomNoRepeats(questions);
     let questionObj = chooser();
-    const { question, answers: [{text_1} , {text_2}, {text_3}, {text_4}]} = questionObj;
+    const { question, answers: [{text_1} , {text_2}, {text_3}, {text_4}], answers:[{correct_1}, {correct_2}, {correct_3}, {correct_4}]} = questionObj;
     questionText.textContent = question;
     optionsContainer.innerHTML = `
-                    <p class="answer">${text_1}</p>
-                    <p class="answer">${text_2}</p>
-                    <p class="answer">${text_3}</p>
-                    <p class="answer">${text_4}</p>
-    `
+                    <p class="answer" data-correct="${correct_1}">${text_1}</p>
+                    <p class="answer" data-correct="${correct_2}">${text_2}</p>
+                    <p class="answer" data-correct="${correct_3}">${text_3}</p>
+                    <p class="answer" data-correct="${correct_4}">${text_4}</p>
+    `;
+    const answerOptions = optionsContainer.querySelectorAll('.answer');
+    let correctAnswer = optionsContainer.querySelector('[data-correct="true"]');
+    answerOptions.forEach((option) => {
+        option.addEventListener('click', function gameplay() {
+            optionsContainer.classList.add('answers-disabled');
+            if(nextBtn.getAttribute('value') === 'easy') {
+                if(option === correctAnswer) {
+                    score += 100;
+                    option.classList.add('answer-correct');
+                }
+                if(option !== correctAnswer) {
+                    score -= 50;
+                    option.classList.add('answer-wrong');
+                    setTimeout(() => {
+                        correctAnswer.classList.add('answer-correct');
+                    }, 700);
+                }
+            }
+            if(nextBtn.getAttribute('value') === 'medium') {
+                if(option === correctAnswer) {
+                    score += 100;
+                    option.classList.add('answer-correct');
+                }
+                if(option !== correctAnswer) {
+                    score -= 75;
+                    option.classList.add('answer-wrong');
+                    setTimeout(() => {
+                        correctAnswer.classList.add('answer-correct');
+                    }, 700);
+                }
+            }
+            if(nextBtn.getAttribute('value') === 'hard') {
+                if(option === correctAnswer) {
+                    score += 100;
+                    option.classList.add('answer-correct');
+                }
+                if(option !== correctAnswer) {
+                    score -= 100;
+                    option.classList.add('answer-wrong');
+                    setTimeout(() => {
+                        correctAnswer.classList.add('answer-correct');
+                    }, 700);
+                }
+            }
+            if(score < 0) {
+                score = 0;
+            }
+            scoreEl.textContent = score;
+            stopCountdown();
+        })
+    })
 }
 
-function countdown () {
+function countdown() {
     if(timer < 0) {
+        score -= 50;
+        scoreEl.textContent = score;
         nextQuestion();
     }
-    
     if(timer <= 10) {
         timerEl.style.color = 'crimson';
     } else {
@@ -87,7 +140,6 @@ function countdown () {
     }
     timerEl.textContent = ' ' + timer;
     timer--;
-    return timer;
 }
 
 difficultyLevelBtns.forEach((btn) => {
@@ -123,17 +175,26 @@ function nextQuestion() {
         questionIndex = 0;
     }
     questionNumber.textContent = questionIndex;
+    optionsContainer.classList.remove('answers-disabled');
     displayQuestion();
+    stopCountdown();
+    startCountdown();
 };
 
 function stopCountdown() {
     clearInterval(interval);
 }
 
+function startCountdown() {
+    interval = setInterval(countdown, 1000);
+}
+
 function reset() {
     questionIndex = 1;
     questionNumber.textContent = questionIndex;
     timerEl.textContent = ' ';
+    score = 0;
+    scoreEl.textContent = score;
     mainMenuContainer.classList.remove('hidden');
     application.classList.add('hidden');
     stopCountdown();
