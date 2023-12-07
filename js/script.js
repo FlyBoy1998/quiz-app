@@ -29,6 +29,7 @@ let score = 0;
 let timer;
 let questionIndex = 1;
 let interval;
+let scoresListArr = [];
 
 function showRulesModal() {
     rulesModal.classList.add('rules-modal-visible');
@@ -192,7 +193,6 @@ function nextQuestion() {
         questionIndex = 0;
         gameOverModal.classList.add('game-over-modal-visible');
         application.classList.add('hidden');
-        displayFinalScore();
         saveScore();
     }
     questionNumber.textContent = questionIndex;
@@ -218,17 +218,20 @@ function mainMenu() {
     mainMenuContainer.classList.remove('hidden');
     difficultyLevelContainer.classList.add('hidden');
     gameOverModal.classList.remove('game-over-modal-visible');
+    score = 0;
     stopCountdown();
 }
 
-function displayFinalScore() {
-    finalScore.textContent = score;
-}
 
 function saveScore() {
     const recordedScoreEl = document.createElement('li');
     recordedScoreEl.textContent = score;
-    scoresList.appendChild(recordedScoreEl);
+    scoresListArr.push(recordedScoreEl);
+    scoresListArr.map((recordedScore) => {
+        scoresList.appendChild(recordedScore);
+    })
+    finalScore.textContent = score;
+    console.log(scoresListArr);
 }
 
 rulesBtn.addEventListener('click', showRulesModal);
