@@ -48,12 +48,20 @@ function hideScoresModal() {
 function start() {
     mainMenuContainer.classList.add('hidden');
     difficultyLevelContainer.classList.remove('hidden');
+    gameOverModal.classList.remove('game-over-modal-visible');
 }
 
 function startPlay() {
     difficultyLevelContainer.classList.add('hidden');
     application.classList.remove('hidden');
     scoreEl.textContent = score;
+}
+
+function mainMenu() {
+    mainMenuContainer.classList.remove('hidden');
+    difficultyLevelContainer.classList.add('hidden');
+    gameOverModal.classList.remove('game-over-modal-visible');
+    stopCountdown();
 }
 
 function randomNoRepeats(array) {
@@ -134,6 +142,9 @@ function displayQuestion() {
 function countdown() {
     if(timer < 0) {
         score -= 50;
+        if(score < 0) {
+            score = 0;
+        }
         scoreEl.textContent = score;
         nextQuestion();
     }
@@ -177,6 +188,8 @@ function nextQuestion() {
 
     if(questionIndex > +questionsTotal.textContent) {
         questionIndex = 0;
+        gameOverModal.classList.add('game-over-modal-visible');
+        application.classList.add('hidden');
     }
     questionNumber.textContent = questionIndex;
     optionsContainer.classList.remove('answers-disabled');
@@ -212,3 +225,8 @@ closeScoresBtn.addEventListener('click', hideScoresModal);
 startBtn.addEventListener('click', start);
 nextBtn.addEventListener('click', nextQuestion);
 resetBtn.addEventListener('click', reset);
+mainMenuBtn.addEventListener('click', mainMenu);
+playAgainBtn.addEventListener('click', () => {
+    stopCountdown();
+    start();
+});
