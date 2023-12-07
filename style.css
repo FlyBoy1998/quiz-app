@@ -419,6 +419,12 @@ h1 {
     opacity: 0;
 }
 
+.game-over-modal-visible {
+    top: 20%;
+    visibility: visible;
+    opacity: 1;
+}
+
 .game-over-score-modal h3 {
     font-size: 32px;
     margin-bottom: 1rem;
