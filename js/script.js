@@ -197,7 +197,7 @@ function nextQuestion() {
         finalScore.textContent = score;
         // Reset DOM content and add new scores
         scoresList.innerHTML = '';
-        // saveScore();
+        saveScore();
     }
     questionNumber.textContent = questionIndex;
     optionsContainer.classList.remove('answers-disabled');
@@ -230,6 +230,25 @@ function mainMenu() {
     gameOverModal.classList.remove('game-over-modal-visible');
     score = 0;
     stopCountdown();
+}
+
+function saveScore() {
+    scoresListArr.push(score);
+    const uniqueValues = [...new Set(scoresListArr)];
+    descendArr(uniqueValues);
+    updateScoresDOM(uniqueValues);
+}
+
+function updateScoresDOM(scores) {
+    scores.map((score) => {
+        const scoreElement = document.createElement('li');
+        scoreElement.textContent = score;
+        scoresList.appendChild(scoreElement);
+    })
+}
+
+function descendArr(arr) {
+    arr.sort((a, b) => {return b - a});
 }
 
 rulesBtn.addEventListener('click', showRulesModal);
