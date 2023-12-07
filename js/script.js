@@ -30,6 +30,7 @@ let timer;
 let questionIndex = 1;
 let interval;
 let scoresListArr = [];
+let recordedScore;
 
 function showRulesModal() {
     rulesModal.classList.add('rules-modal-visible');
@@ -193,7 +194,10 @@ function nextQuestion() {
         questionIndex = 0;
         gameOverModal.classList.add('game-over-modal-visible');
         application.classList.add('hidden');
-        saveScore();
+        finalScore.textContent = score;
+        // Reset DOM content and add new scores
+        scoresList.innerHTML = '';
+        // saveScore();
     }
     questionNumber.textContent = questionIndex;
     optionsContainer.classList.remove('answers-disabled');
@@ -214,24 +218,18 @@ function reset() {
     stopCountdown();
 }
 
+function playAgain() {
+    score = 0;
+    stopCountdown();
+    start()
+}
+
 function mainMenu() {
     mainMenuContainer.classList.remove('hidden');
     difficultyLevelContainer.classList.add('hidden');
     gameOverModal.classList.remove('game-over-modal-visible');
     score = 0;
     stopCountdown();
-}
-
-
-function saveScore() {
-    const recordedScoreEl = document.createElement('li');
-    recordedScoreEl.textContent = score;
-    scoresListArr.push(recordedScoreEl);
-    scoresListArr.map((recordedScore) => {
-        scoresList.appendChild(recordedScore);
-    })
-    finalScore.textContent = score;
-    console.log(scoresListArr);
 }
 
 rulesBtn.addEventListener('click', showRulesModal);
@@ -242,7 +240,4 @@ startBtn.addEventListener('click', start);
 nextBtn.addEventListener('click', nextQuestion);
 resetBtn.addEventListener('click', reset);
 mainMenuBtn.addEventListener('click', mainMenu);
-playAgainBtn.addEventListener('click', () => {
-    stopCountdown();
-    start();
-});
+playAgainBtn.addEventListener('click', playAgain);
