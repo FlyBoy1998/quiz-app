@@ -23,6 +23,7 @@ const gameOverModal = document.querySelector('.game-over-score-modal');
 const finalScore = document.querySelector('.final-score');
 const playAgainBtn = document.querySelector('.play-again-btn');
 const mainMenuBtn = document.querySelector('.main-menu-btn');
+const scoresList = document.querySelector('.scores-list');
 
 let score = 0;
 let timer;
@@ -191,6 +192,8 @@ function nextQuestion() {
         questionIndex = 0;
         gameOverModal.classList.add('game-over-modal-visible');
         application.classList.add('hidden');
+        displayFinalScore();
+        saveScore();
     }
     questionNumber.textContent = questionIndex;
     optionsContainer.classList.remove('answers-disabled');
@@ -216,6 +219,16 @@ function mainMenu() {
     difficultyLevelContainer.classList.add('hidden');
     gameOverModal.classList.remove('game-over-modal-visible');
     stopCountdown();
+}
+
+function displayFinalScore() {
+    finalScore.textContent = score;
+}
+
+function saveScore() {
+    const recordedScoreEl = document.createElement('li');
+    recordedScoreEl.textContent = score;
+    scoresList.appendChild(recordedScoreEl);
 }
 
 rulesBtn.addEventListener('click', showRulesModal);
