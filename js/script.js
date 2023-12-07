@@ -19,6 +19,10 @@ const scoreEl = document.querySelector('.score');
 const timerEl = document.querySelector('.timer');
 const nextBtn = document.querySelector('.next-question-btn');
 const resetBtn = document.querySelector('.reset-btn');
+const gameOverModal = document.querySelector('.game-over-score-modal');
+const finalScore = document.querySelector('.final-score');
+const playAgainBtn = document.querySelector('.play-again-btn');
+const mainMenuBtn = document.querySelector('.main-menu-btn');
 
 let score = 0;
 let timer;
