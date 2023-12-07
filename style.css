@@ -414,9 +414,9 @@ h1 {
     backdrop-filter: blur(15px);
     box-shadow: 0 0 10px 6px rgba(40, 40, 40, 0.55);
     background-color: rgba(0, 4, 40, 0.4);
-    /* transition: all 0.4s linear;
+    transition: all 0.4s linear;
     visibility: hidden;
-    opacity: 0; */
+    opacity: 0;
 }
 
 .game-over-score-modal h3 {
@@ -485,6 +485,10 @@ h1 {
     .scores-modal {
         width: 75%;
     }
+    
+    .game-over-score-modal{
+        width: 65%;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -520,6 +524,10 @@ h1 {
 
     .scores-modal {
         width: 80%;
+    }
+
+    .game-over-score-modal {
+        width: 75%;
     }
 }
 
@@ -561,6 +569,10 @@ h1 {
     }
 
     .scores-modal{
+        width: 90%;
+    }
+
+    .game-over-score-modal {
         width: 90%;
     }
 }
