@@ -16,7 +16,7 @@
     <div class="container">
         <h1>Quiz App</h1>
         <!-- Application -->
-        <div class="app-container">
+        <div class="app-container hidden">
             <!-- Main Menu -->
             <div class="main-menu-container">
                 <h2 class="main-menu-title">Let's test your knowledge!</h2>
@@ -88,6 +88,16 @@
                 <li>100</li>
             </ol>
             <button class="close-modal-btn" id="close-scores-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <!-- Game Over Scores Modal -->
+        <div class="game-over-score-modal">
+            <h3>Final Score:</h3>
+            <p class="final-score">1000</p>
+            <div class="game-over-btns-container">
+                <button>Play Again</button>
+                <button>Main Menu</button>
+            </div>
         </div>
     </div>
     <script src="./js/script.js" type="module"></script>
