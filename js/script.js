@@ -1,5 +1,6 @@
 import questions from "./questions.js";
 
+const mainMenuContainer = document.querySelector('.main-menu-container');
 const rulesModal = document.querySelector('.rules-modal');
 const rulesBtn = document.querySelector('.rules-btn');
 const closeRulesBtn = document.getElementById('close-rules-btn');
@@ -7,7 +8,6 @@ const scoresBtn = document.querySelector('.scores-btn');
 const scoresModal = document.querySelector('.scores-modal');
 const closeScoresBtn = document.getElementById('close-scores-btn');
 const startBtn = document.querySelector('.start-btn');
-const mainMenuContainer = document.querySelector('.main-menu-container');
 const difficultyLevelContainer = document.querySelector('.difficulty-level-container');
 const difficultyLevelBtns = document.querySelectorAll('.difficulty-level-btn');
 const application = document.querySelector('.app');
@@ -57,12 +57,24 @@ function startPlay() {
     scoreEl.textContent = score;
 }
 
-function mainMenu() {
-    mainMenuContainer.classList.remove('hidden');
-    difficultyLevelContainer.classList.add('hidden');
-    gameOverModal.classList.remove('game-over-modal-visible');
-    stopCountdown();
-}
+difficultyLevelBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        nextBtn.setAttribute('value', btn.value);
+        if(btn.value === 'easy') {
+            timer = 25;
+            questionsTotal.textContent = 15;
+        } else if(btn.value === 'medium') {
+            timer = 20;
+            questionsTotal.textContent = 20;
+        } else {
+            timer = 15;
+            questionsTotal.textContent = 25;
+        }
+        startPlay();
+        displayQuestion();
+        interval = setInterval(countdown, 1000);
+    });
+})
 
 function randomNoRepeats(array) {
     let copy = array.slice(0);
@@ -157,24 +169,13 @@ function countdown() {
     timer--;
 }
 
-difficultyLevelBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        nextBtn.setAttribute('value', btn.value);
-        if(btn.value === 'easy') {
-            timer = 25;
-            questionsTotal.textContent = 15;
-        } else if(btn.value === 'medium') {
-            timer = 20;
-            questionsTotal.textContent = 20;
-        } else {
-            timer = 15;
-            questionsTotal.textContent = 25;
-        }
-        startPlay();
-        displayQuestion();
-        interval = setInterval(countdown, 1000);
-    });
-})
+function stopCountdown() {
+    clearInterval(interval);
+}
+
+function startCountdown() {
+    interval = setInterval(countdown, 1000);
+}
 
 function nextQuestion() {
     questionIndex++;
@@ -198,14 +199,6 @@ function nextQuestion() {
     startCountdown();
 };
 
-function stopCountdown() {
-    clearInterval(interval);
-}
-
-function startCountdown() {
-    interval = setInterval(countdown, 1000);
-}
-
 function reset() {
     questionIndex = 1;
     questionNumber.textContent = questionIndex;
@@ -215,6 +208,13 @@ function reset() {
     mainMenuContainer.classList.remove('hidden');
     application.classList.add('hidden');
     optionsContainer.classList.remove('answers-disabled');
+    stopCountdown();
+}
+
+function mainMenu() {
+    mainMenuContainer.classList.remove('hidden');
+    difficultyLevelContainer.classList.add('hidden');
+    gameOverModal.classList.remove('game-over-modal-visible');
     stopCountdown();
 }
 
