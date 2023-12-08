@@ -24,6 +24,7 @@ const finalScore = document.querySelector('.final-score');
 const playAgainBtn = document.querySelector('.play-again-btn');
 const mainMenuBtn = document.querySelector('.main-menu-btn');
 const scoresList = document.querySelector('.scores-list');
+const newHighScore = document.querySelector('.new-high-score');
 
 let score = 0;
 let timer;
@@ -219,6 +220,7 @@ function reset() {
 
 function playAgain() {
     score = 0;
+    newHighScore.classList.remove('new-high-score-visible');
     stopCountdown();
     start()
 }
@@ -227,6 +229,7 @@ function mainMenu() {
     mainMenuContainer.classList.remove('hidden');
     difficultyLevelContainer.classList.add('hidden');
     gameOverModal.classList.remove('game-over-modal-visible');
+    newHighScore.classList.remove('new-high-score-visible');
     score = 0;
     stopCountdown();
 }
@@ -262,10 +265,11 @@ function checkForTopFive(array, score) {
             array.push(score);
         }
         // If a NEW HIGH SCORE is set
-        // if(score > array[0]) {
-        //     array.pop(array.length - 1);
-        //     array.push(score);
-        // }
+        if(score > array[0]) {
+            array.pop(array.length - 1);
+            array.push(score);
+            newHighScore.classList.add('new-high-score-visible');
+        }
     }
     return array;
 } 
