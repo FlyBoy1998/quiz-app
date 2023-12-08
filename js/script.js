@@ -30,7 +30,6 @@ let timer;
 let questionIndex = 1;
 let interval;
 let scoresListArr = [];
-let recordedScore;
 
 function showRulesModal() {
     rulesModal.classList.add('rules-modal-visible');
