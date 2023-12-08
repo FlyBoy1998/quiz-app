@@ -43,8 +43,6 @@ h1 {
     row-gap: 2rem;
     box-shadow: 0 0 15px 5px rgba(44, 62, 80, 0.89);
     background: linear-gradient(to left, #000428, #004e92);
-
-    /* Visibility hidden while styling */
 }
 
 /* Add important so that the display flex from large screen size doesn't overwrite it */
