@@ -243,6 +243,7 @@ function saveScore() {
     if(uniqueValues.length > 5) {
         uniqueValues.length = 5;
     }
+    saveToLocalStorage(uniqueValues);
     updateScoresDOM(uniqueValues);
 }
 
@@ -252,6 +253,12 @@ function updateScoresDOM(scores) {
         scoreElement.textContent = score;
         scoresList.appendChild(scoreElement);
     })
+}
+
+function saveToLocalStorage(scores) {
+    if(!localStorage.getItem(scores)) {
+        localStorage.setItem('savedScores', scores);
+    }
 }
 
 function descendArr(arr) {
