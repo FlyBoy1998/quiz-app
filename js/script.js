@@ -31,6 +31,9 @@ let timer;
 let questionIndex = 1;
 let interval;
 let scoresListArr = [];
+let string;
+let restring;
+let retrArray;
 
 function showRulesModal() {
     rulesModal.classList.add('rules-modal-visible');
@@ -243,6 +246,7 @@ function saveScore() {
     if(uniqueValues.length > 5) {
         uniqueValues.length = 5;
     }
+    console.log(uniqueValues);
     saveToLocalStorage(uniqueValues);
     updateScoresDOM(uniqueValues);
 }
@@ -257,12 +261,12 @@ function updateScoresDOM(scores) {
 
 function saveToLocalStorage(scores) {
     if(!localStorage.getItem(scores)) {
-        localStorage.setItem('savedScores', scores);
+        localStorage.setItem('savedScores', JSON.stringify(scores));
     }
 }
 
 function descendArr(arr) {
-    arr.sort((a, b) => {return b - a});
+    arr.sort((a, b) => { return b - a });
 }
 
 function checkForTopFive(array, score) {
@@ -279,7 +283,18 @@ function checkForTopFive(array, score) {
         }
     }
     return array;
-} 
+}
+
+function updateDOMfromLocalStorage() {
+    restring = localStorage.getItem('savedScores');
+    retrArray = JSON.parse(restring);
+    console.log(retrArray);
+    retrArray.map((score) => {
+        const scoreElement = document.createElement('li');
+        scoreElement.textContent = score;
+        scoresList.appendChild(scoreElement);
+    });
+}
 
 rulesBtn.addEventListener('click', showRulesModal);
 closeRulesBtn.addEventListener('click', hideRulesModal);
@@ -290,3 +305,4 @@ nextBtn.addEventListener('click', nextQuestion);
 resetBtn.addEventListener('click', reset);
 mainMenuBtn.addEventListener('click', mainMenu);
 playAgainBtn.addEventListener('click', playAgain);
+window.addEventListener('load', updateDOMfromLocalStorage);
