@@ -233,8 +233,13 @@ function mainMenu() {
 
 function saveScore() {
     scoresListArr.push(score);
+    checkForTopFive(scoresListArr, score);
     const uniqueValues = [...new Set(scoresListArr)];
     descendArr(uniqueValues);
+    // Set the uniqueValues max length to 5
+    if(uniqueValues.length > 5) {
+        uniqueValues.length = 5;
+    }
     updateScoresDOM(uniqueValues);
 }
 
@@ -249,6 +254,21 @@ function updateScoresDOM(scores) {
 function descendArr(arr) {
     arr.sort((a, b) => {return b - a});
 }
+
+function checkForTopFive(array, score) {
+    for(let i = 0; i <= array.length; i ++) {
+        if(score > array[i]) {
+            array.pop(array.length - 1);
+            array.push(score);
+        }
+        // If a NEW HIGH SCORE is set
+        // if(score > array[0]) {
+        //     array.pop(array.length - 1);
+        //     array.push(score);
+        // }
+    }
+    return array;
+} 
 
 rulesBtn.addEventListener('click', showRulesModal);
 closeRulesBtn.addEventListener('click', hideRulesModal);
