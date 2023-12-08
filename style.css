@@ -479,6 +479,39 @@ h1 {
     background-color: rgb(128, 128, 128);
 }
 
+.new-high-score {
+    font-size: 14px;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    color: rgb(30, 255, 0);
+    letter-spacing: 2px;
+    font-weight: bold;
+    transition: all 0.3s ease-out;
+    animation: highscoreSet 2s infinite ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.new-high-score-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+@keyframes highscoreSet {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .app {
         width: 85%;
@@ -580,5 +613,11 @@ h1 {
 
     .game-over-score-modal {
         width: 90%;
+    }
+
+    .new-high-score {
+        top: 1rem;
+        right: 1rem;
+        font-size: 12px;
     }
 }
