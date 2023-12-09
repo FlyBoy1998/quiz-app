@@ -201,6 +201,7 @@ function nextQuestion() {
         // Reset DOM content and add new scores
         scoresList.innerHTML = '';
         saveScore();
+        updateDOMfromLocalStorage();
     }
     questionNumber.textContent = questionIndex;
     optionsContainer.classList.remove('answers-disabled');
@@ -238,30 +239,30 @@ function mainMenu() {
 }
 
 function saveScore() {
-    scoresListArr.push(score);
-    checkForTopFive(scoresListArr, score);
+    if(score === 0) {
+        return;
+    } else {
+        scoresListArr.push(score);
+    }
     const uniqueValues = [...new Set(scoresListArr)];
+    checkForTopFive(uniqueValues, score);
     descendArr(uniqueValues);
     // Set the uniqueValues max length to 5
     if(uniqueValues.length > 5) {
         uniqueValues.length = 5;
     }
-    console.log(uniqueValues);
     saveToLocalStorage(uniqueValues);
-    updateScoresDOM(uniqueValues);
-}
-
-function updateScoresDOM(scores) {
-    scores.map((score) => {
-        const scoreElement = document.createElement('li');
-        scoreElement.textContent = score;
-        scoresList.appendChild(scoreElement);
-    })
 }
 
 function saveToLocalStorage(scores) {
-    if(!localStorage.getItem(scores)) {
-        localStorage.setItem('savedScores', JSON.stringify(scores));
+    if(!localStorage.getItem('savedScores')) {
+        string = localStorage.setItem('savedScores', JSON.stringify(scores));
+    } else if (localStorage.getItem('savedScores')) {
+        restring = [...new Set(JSON.parse(localStorage.getItem('savedScores')), scores)];
+        restring.push(score);
+        descendArr(restring);
+        localStorage.removeItem(string);
+        string = localStorage.setItem('savedScores', JSON.stringify(restring));
     }
 }
 
@@ -270,7 +271,7 @@ function descendArr(arr) {
 }
 
 function checkForTopFive(array, score) {
-    for(let i = 0; i <= array.length; i ++) {
+    for(let i = 0; i <= array.length; i++) {
         if(score > array[i]) {
             array.pop(array.length - 1);
             array.push(score);
@@ -286,8 +287,7 @@ function checkForTopFive(array, score) {
 }
 
 function updateDOMfromLocalStorage() {
-    restring = localStorage.getItem('savedScores');
-    retrArray = JSON.parse(restring);
+    retrArray = [...new Set(JSON.parse(localStorage.getItem('savedScores')))];
     console.log(retrArray);
     retrArray.map((score) => {
         const scoreElement = document.createElement('li');
