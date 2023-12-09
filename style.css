@@ -348,6 +348,7 @@ h1 {
     background-color: #5f9ea0c1;
 }
 
+/* SCORES MODAL */
 .scores-modal {
     display: flex;
     flex-direction: column;
