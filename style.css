@@ -356,7 +356,7 @@ h1 {
     justify-content: center;
     position: absolute;
     width: 50%;
-    min-height: 300px;
+    max-height: 300px;
     left: 50%;
     top: 10%;
     padding: 1.5rem 3rem;
@@ -377,6 +377,13 @@ h1 {
     top: 20%;
     visibility: visible;
     opacity: 1;
+}
+
+.scores-list {
+    overflow-y: scroll;
+    text-align: center;
+    width: 100%;
+    list-style-position: inside;
 }
 
 .scores-modal h3 {
