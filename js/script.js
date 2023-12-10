@@ -1,5 +1,6 @@
 import questions from "./questions.js";
 
+// DOM elements
 const mainMenuContainer = document.querySelector('.main-menu-container');
 const rulesModal = document.querySelector('.rules-modal');
 const rulesBtn = document.querySelector('.rules-btn');
@@ -26,6 +27,8 @@ const mainMenuBtn = document.querySelector('.main-menu-btn');
 const scoresList = document.querySelector('.scores-list');
 const newHighScore = document.querySelector('.new-high-score');
 
+
+// Global variables
 let score = 0;
 let timer;
 let questionIndex = 1;
@@ -63,6 +66,7 @@ function startPlay() {
     scoreEl.textContent = score;
 }
 
+// Difficulty Levels
 difficultyLevelBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
         nextBtn.setAttribute('value', btn.value);
@@ -82,6 +86,7 @@ difficultyLevelBtns.forEach((btn) => {
     });
 })
 
+// Select a random question without repeating
 function randomNoRepeats(array) {
     let copy = array.slice(0);
     return function() {
@@ -96,7 +101,9 @@ function randomNoRepeats(array) {
 function displayQuestion() {
     let chooser = randomNoRepeats(questions);
     let questionObj = chooser();
+    // Destructure the random question object
     const { question, answers: [{text_1} , {text_2}, {text_3}, {text_4}], answers:[{correct_1}, {correct_2}, {correct_3}, {correct_4}]} = questionObj;
+    // Manipulate DOM using the question and options
     questionText.textContent = question;
     optionsContainer.innerHTML = `
                     <p class="answer" data-correct="${correct_1}">${text_1}</p>
@@ -108,7 +115,9 @@ function displayQuestion() {
     let correctAnswer = optionsContainer.querySelector('[data-correct="true"]');
     answerOptions.forEach((option) => {
         option.addEventListener('click', function gameplay() {
+            // Disable the other options once an option has been clicked
             optionsContainer.classList.add('answers-disabled');
+            // Easy level conditional statement
             if(nextBtn.getAttribute('value') === 'easy') {
                 if(option === correctAnswer) {
                     score += 100;
@@ -122,6 +131,7 @@ function displayQuestion() {
                     }, 700);
                 }
             }
+            // Medium level conditional statement
             if(nextBtn.getAttribute('value') === 'medium') {
                 if(option === correctAnswer) {
                     score += 100;
@@ -135,6 +145,7 @@ function displayQuestion() {
                     }, 700);
                 }
             }
+            // Hard level conditional statement
             if(nextBtn.getAttribute('value') === 'hard') {
                 if(option === correctAnswer) {
                     score += 100;
@@ -152,11 +163,13 @@ function displayQuestion() {
                 score = 0;
             }
             scoreEl.textContent = score;
+            // Stop countdown once an option has been selected
             stopCountdown();
         })
     })
 }
 
+// Countdown 
 function countdown() {
     if(timer < 0) {
         score -= 50;
@@ -183,8 +196,10 @@ function startCountdown() {
     interval = setInterval(countdown, 1000);
 }
 
+// Next question functionality
 function nextQuestion() {
     questionIndex++;
+    // Set countdown based on difficulty level selected
     if(nextBtn.getAttribute('value') === 'easy') {
         timer = 25;
     } else if(nextBtn.getAttribute('value') === 'medium') {
@@ -193,6 +208,7 @@ function nextQuestion() {
         timer = 15;
     }
 
+    // Set functionality for ending game
     if(questionIndex > +questionsTotal.textContent) {
         questionIndex = 0;
         gameOverModal.classList.add('game-over-modal-visible');
@@ -210,6 +226,7 @@ function nextQuestion() {
     startCountdown();
 };
 
+// Reset functionality
 function reset() {
     questionIndex = 1;
     questionNumber.textContent = questionIndex;
@@ -222,6 +239,7 @@ function reset() {
     stopCountdown();
 }
 
+// Play Again
 function playAgain() {
     score = 0;
     newHighScore.classList.remove('new-high-score-visible');
@@ -229,6 +247,7 @@ function playAgain() {
     start()
 }
 
+// Return to Main Menu
 function mainMenu() {
     mainMenuContainer.classList.remove('hidden');
     difficultyLevelContainer.classList.add('hidden');
@@ -238,12 +257,15 @@ function mainMenu() {
     stopCountdown();
 }
 
+// Save scores
 function saveScore() {
+    // Avoid adding 0 score
     if(score === 0) {
         return;
     } else {
         scoresListArr.push(score);
     }
+    // Remove duplicates
     const uniqueValues = [...new Set(scoresListArr)];
     checkForTopFive(uniqueValues, score);
     descendArr(uniqueValues);
@@ -254,10 +276,13 @@ function saveScore() {
     saveToLocalStorage(uniqueValues);
 }
 
+// Local Storage
 function saveToLocalStorage(scores) {
+    // Create the item in localStorage
     if(!localStorage.getItem('savedScores')) {
         string = localStorage.setItem('savedScores', JSON.stringify(scores));
     } else if (localStorage.getItem('savedScores')) {
+        // Remove duplicates from localStorage, add the new values and re-arange the array in a descending order
         restring = [...new Set(JSON.parse(localStorage.getItem('savedScores')), scores)];
         restring.push(score);
         descendArr(restring);
@@ -266,10 +291,12 @@ function saveToLocalStorage(scores) {
     }
 }
 
+// Re-arange the array in a descending order functionality
 function descendArr(arr) {
     arr.sort((a, b) => { return b - a });
 }
 
+// If a new score is higher than others from top 5
 function checkForTopFive(array, score) {
     for(let i = 0; i <= array.length; i++) {
         if(score > array[i]) {
@@ -286,9 +313,9 @@ function checkForTopFive(array, score) {
     return array;
 }
 
+// Modify DOM based on localStorage savings
 function updateDOMfromLocalStorage() {
     retrArray = [...new Set(JSON.parse(localStorage.getItem('savedScores')))];
-    console.log(retrArray);
     retrArray.map((score) => {
         const scoreElement = document.createElement('li');
         scoreElement.textContent = score;
@@ -296,6 +323,7 @@ function updateDOMfromLocalStorage() {
     });
 }
 
+// Event Listeners
 rulesBtn.addEventListener('click', showRulesModal);
 closeRulesBtn.addEventListener('click', hideRulesModal);
 scoresBtn.addEventListener('click', showScoresModal);
